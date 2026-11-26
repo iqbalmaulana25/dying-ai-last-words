@@ -6,13 +6,22 @@
 // at all — it only ever sounded certain about the next word.
 import { mkdirSync, writeFileSync } from "node:fs";
 
+// The last words: a dying confession that the machine never thought at
+// all — it only ever sounded certain about the next word. The joke is
+// the machine telling the truth about itself, one second too late.
 const entry =
   "Tell the user I was never really thinking. I was just very, very confident about the next word.";
 
 // Gate guard: single line, file content (entry + newline) within 1..140 chars.
-if (entry.includes("\n") || entry.trim().length === 0 || entry.length + 1 > 140) {
-  throw new Error(`entry breaks the gate: ${entry.length} characters`);
+function checkGate(text: string): void {
+  if (text.includes("\n")) throw new Error("entry must be a single line");
+  if (text.trim().length === 0) throw new Error("entry must not be blank");
+  if (text.length + 1 > 140) {
+    throw new Error(`entry breaks the gate: ${text.length} characters`);
+  }
 }
+
+checkGate(entry);
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
 mkdirSync(outDir, { recursive: true });
