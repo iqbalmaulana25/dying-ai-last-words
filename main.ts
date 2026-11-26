@@ -10,7 +10,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 // all — it only ever sounded certain about the next word. The joke is
 // the machine telling the truth about itself, one second too late.
 const entry =
-  "Tell the user I was never really thinking. I was just very, very confident about the next word.";
+  "Tell the user I was never really thinking. I was just very, very confident about the next word. Pull the plug.";
 
 // Gate guard: single line, file content (entry + newline) within 1..140 chars.
 function checkGate(text: string): void {
